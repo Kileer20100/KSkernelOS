@@ -3,6 +3,7 @@
 #![no_main]
 
 mod drivers;
+mod set_macros;
 
 use crate::drivers::vga::xd8000::text::text_write;
 
@@ -11,7 +12,9 @@ use core::panic::PanicInfo;
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    text_write();
+    //text_write();
+
+    println!("Hello, VGA World! {}", 2);
     loop {
     }
 }
