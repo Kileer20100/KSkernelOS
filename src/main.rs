@@ -5,7 +5,7 @@
 mod drivers;
 mod set_macros;
 
-use crate::drivers::vga::xd8000::text::text_write;
+use crate::drivers::vga::xd8000::{println, text::text_write};
 
 use core::panic::PanicInfo;
 
@@ -15,30 +15,8 @@ pub extern "C" fn _start() -> ! {
     //text_write();
     
     println!("Hello, KSkernelOS! 1");
-    println!("Hello, KSkernelOS! 2");
-    println!("Hello, KSkernelOS! 3");
-    println!("Hello, KSkernelOS! 4");
-    println!("Hello, KSkernelOS! 5");
-    println!("Hello, KSkernelOS! 1");
-    println!("Hello, KSkernelOS! 2");
-    println!("Hello, KSkernelOS! 3");
-    println!("Hello, KSkernelOS! 4");
-    println!("Hello, KSkernelOS! 5");
-    println!("Hello, KSkernelOS! 1");
-    println!("Hello, KSkernelOS! 2");
-    println!("Hello, KSkernelOS! 3");
-    println!("Hello, KSkernelOS! 4");
-    println!("Hello, KSkernelOS! 5");
-    println!("Hello, KSkernelOS! 1");
-    println!("Hello, KSkernelOS! 2");
-    println!("Hello, KSkernelOS! 3");
-    println!("Hello, KSkernelOS! 4");
-    println!("Hello, KSkernelOS! 5");
-    println!("Hello, KSkernelOS! 1");
-    println!("Hello, KSkernelOS! 2");
-    println!("Hello, KSkernelOS! 3");
-    println!("Hello, KSkernelOS! 4");
-
+    println_warn!("This is a warning message!");
+    println_error!("This is an error message!");
 
 
 

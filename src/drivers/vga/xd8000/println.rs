@@ -20,12 +20,37 @@ static mut SKREEN_COLOR: [u8; 25*80] = [0; 25*80];
 static mut ITER: u32 = 0;
 static mut ROW_WRITE: u32 = 0;
 
+// Global mutable variable for write color
+static mut WRITE_COLOR: u8 = Color::WHITE;
 
-//*-END MACROS-*/
+//*-END MACROS println!();-*/
 pub fn println(agrs: core::fmt::Arguments) {
     let mut printer = VGAPrinter;
     core::fmt::Write::write_fmt(&mut printer, agrs).unwrap();
 }
+
+//*-END MACROS println_warn();-*/
+pub fn println_warn(agrs: core::fmt::Arguments) {
+    let mut printer = VGAPrinter;
+
+    unsafe {
+        WRITE_COLOR = Color::warning();
+    }
+
+    core::fmt::Write::write_fmt(&mut printer, agrs).unwrap();
+}
+
+//*-END MACROS println_warn();-*/
+pub fn println_error(agrs: core::fmt::Arguments) {
+    let mut printer = VGAPrinter;
+
+    unsafe {
+        WRITE_COLOR = Color::error();
+    }
+
+    core::fmt::Write::write_fmt(&mut printer, agrs).unwrap();
+}
+
 
 struct VGAPrinter;
 
@@ -34,7 +59,7 @@ impl Write for VGAPrinter {
     fn write_str(&mut self, message: &str) -> core::fmt::Result {
             //let text = message.bytes().enumerate();
             //call the buffer function 
-            bufer_vga(message, Color::text_write());
+            bufer_vga(message);
 
             //write the buffered data to VGA memory
             let base = 0xb8000 as *mut u8;
@@ -76,9 +101,12 @@ impl Write for VGAPrinter {
 }
 
 //*-Function to buffer VGA output-*/
-fn bufer_vga(message: &str, color: u8) {
+fn bufer_vga(message: &str) {
     //convert message to bytes
     let text = message.as_bytes();
+
+    //get the global write color
+    let global_color = unsafe { WRITE_COLOR };
 
     //call global iteration function
     global_iteration_();
@@ -95,7 +123,7 @@ fn bufer_vga(message: &str, color: u8) {
             }
 
             SKREEN_TEXT[idx] = byte;
-            SKREEN_COLOR[idx] = color;
+            SKREEN_COLOR[idx] = global_color as u8;
 
             ITER = (idx + 1) as u32;
         }
