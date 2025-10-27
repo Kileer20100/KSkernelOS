@@ -13,8 +13,35 @@ use core::panic::PanicInfo;
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
     //text_write();
+    
+    println!("Hello, KSkernelOS! 1");
+    println!("Hello, KSkernelOS! 2");
+    println!("Hello, KSkernelOS! 3");
+    println!("Hello, KSkernelOS! 4");
+    println!("Hello, KSkernelOS! 5");
+    println!("Hello, KSkernelOS! 1");
+    println!("Hello, KSkernelOS! 2");
+    println!("Hello, KSkernelOS! 3");
+    println!("Hello, KSkernelOS! 4");
+    println!("Hello, KSkernelOS! 5");
+    println!("Hello, KSkernelOS! 1");
+    println!("Hello, KSkernelOS! 2");
+    println!("Hello, KSkernelOS! 3");
+    println!("Hello, KSkernelOS! 4");
+    println!("Hello, KSkernelOS! 5");
+    println!("Hello, KSkernelOS! 1");
+    println!("Hello, KSkernelOS! 2");
+    println!("Hello, KSkernelOS! 3");
+    println!("Hello, KSkernelOS! 4");
+    println!("Hello, KSkernelOS! 5");
+    println!("Hello, KSkernelOS! 1");
+    println!("Hello, KSkernelOS! 2");
+    println!("Hello, KSkernelOS! 3");
+    println!("Hello, KSkernelOS! 4");
 
-    println!("Hello, VGA World! {}", 2);
+
+
+
     loop {
     }
 }
