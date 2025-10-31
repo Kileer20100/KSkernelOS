@@ -26,6 +26,9 @@ static mut WRITE_COLOR: u8 = Color::WHITE;
 //*-END MACROS println!();-*/
 pub fn println(agrs: core::fmt::Arguments) {
     let mut printer = VGAPrinter;
+    unsafe {
+        WRITE_COLOR = Color::WHITE;
+    }
     core::fmt::Write::write_fmt(&mut printer, agrs).unwrap();
 }
 
